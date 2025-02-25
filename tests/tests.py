@@ -16,7 +16,8 @@ from main import main
     (["main.py", "--locations", "99999"], ["99999 is a wrong zip code"]),
     (["main.py", "--locations", "NonExistentCity"], ["NonExistentCity is a wrong location"]),
     (["main.py", "--locations", ""], ["Location/zip code is required"]),
-    (["main.py", "--locations", "95126", "Madison, WI"], ["San Jose, US, 37.3249, -121.9153", "Madison, Wisconsin, US, 43.074761, -89.3837613"])
+    (["main.py", "--locations", "95126", "Madison, WI"],
+        ["San Jose, US, 37.3249, -121.9153", "Madison, Wisconsin, US, 43.074761, -89.3837613"])
 ])
 def test_main_function_happy_path(args, expected_output):
     with patch.object(sys, "argv", args):
