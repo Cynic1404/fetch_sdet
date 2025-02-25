@@ -34,8 +34,8 @@ def test_api_get_coordinates_by_zip_with_wrong_zip():
     assert Apis.api_get_coordinates_by_zip("") == 400
 
 def test_api_get_coordinates_by_location_name_with_wrong_location_name():
-    assert Apis.api_get_coordinates_by_location_name("MadisonWI") == False
-    assert Apis.api_get_coordinates_by_location_name("Madiso") == False
+    assert Apis.api_get_coordinates_by_location_name("MadisonWI") == "Location not found"
+    assert Apis.api_get_coordinates_by_location_name("Madiso") == "Location not found"
 
 #helpers tests
 

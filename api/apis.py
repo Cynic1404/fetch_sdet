@@ -20,7 +20,7 @@ class Apis:
                     "longitude": data[0].get("lon")
                 }
             else:
-                return False
+                return "Location not found"
         else:
             return response.status_code
 
