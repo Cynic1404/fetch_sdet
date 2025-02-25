@@ -1,9 +1,35 @@
-import pytest
+import random
 
 from helpers.helpers import Helpers
 from api.apis import Apis
 
+import pytest
+import sys
+from unittest.mock import patch
+from main import main
 
+
+#main function tests
+@pytest.mark.parametrize("args, expected_output", [
+    (["main.py", "--locations", "Madison, WI"], ["Madison, Wisconsin, US, 43.074761, -89.3837613"]),
+    (["main.py", "--locations", "95126"], ["San Jose, US, 37.3249, -121.9153"]),
+    (["main.py", "--locations", "99999"], ["99999 is a wrong zip code"]),
+    (["main.py", "--locations", "NonExistentCity"], ["NonExistentCity is a wrong location"]),
+    (["main.py", "--locations", ""], ["Location/zip code is required"]),
+    (["main.py", "--locations", "95126", "Madison, WI"], ["San Jose, US, 37.3249, -121.9153", "Madison, Wisconsin, US, 43.074761, -89.3837613"])
+])
+def test_main_function_happy_path(args, expected_output):
+    with patch.object(sys, "argv", args):
+        output = main()
+        assert output == expected_output
+
+def test_multiple_locations():
+    args_list = ["main.py", "--locations"]
+    number_of_inputs = random.randint(1, 15)
+    args_list.extend(["94107"]*number_of_inputs)
+    with patch.object(sys, "argv", args_list):
+        output = main()
+        assert len(output) == number_of_inputs
 
 
 #api tests

@@ -18,7 +18,7 @@ class Helpers:
     @classmethod
     def get_coordinates_by_location_name(cls, location):
         result = Apis.api_get_coordinates_by_location_name(location)
-        if result in [401,404, False]:
+        if result in [401,404, "Location not found"]:
             return(f"{location} is a wrong location")
         else:
             return (f"{result['place_name']}, {result['state'] + ', ' if result['state'] else ''}"
