@@ -3,7 +3,7 @@ import requests
 
 class Apis:
     BASE_URL="http://api.openweathermap.org/geo/1.0/"
-    API_KEY = "f897a99d971b5eef57be6fafa0d83239"
+    API_KEY = "..."
     @classmethod
     def api_get_coordinates_by_location_name(cls, city_state, is_api_key=True):
         api_key = "" if not is_api_key else cls.API_KEY
